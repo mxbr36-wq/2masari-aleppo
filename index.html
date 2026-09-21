@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>مساري | اكتشف ميولك، واختر مستقبلك</title>
+  <meta name="description" content="مساري: اختبار تفاعلي استرشادي يساعدك على اكتشاف ميولك واهتماماتك والتعرّف على مجالات وتخصصات جامعية مناسبة لك." />
+  <meta property="og:title" content="مساري | اكتشف ميولك، واختر مستقبلك" />
+  <meta property="og:description" content="اختبار تفاعلي استرشادي يساعدك على اكتشاف ميولك واهتماماتك والتعرّف على مجالات وتخصصات جامعية." />
+  <meta property="og:type" content="website" />
+  <style>
+
+  :root{
+    --bg:#fbfcfa;
+    --paper:#ffffff;
+    --text:#123f3b;
+    --muted:#667b77;
+    --primary:#176b5c;
+    --primary2:#2f9e7b;
+    --line:#dce7e3;
+    --soft:#eef7f3;
+    --shadow:0 18px 45px rgba(18,63,59,.11);
+    --radius:22px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    background:
+      radial-gradient(380px 300px at 0% 8%, rgba(23,107,92,.07), transparent 70%),
+      radial-gradient(380px 300px at 100% 15%, rgba(47,158,123,.06), transparent 72%),
+      linear-gradient(180deg,#ffffff 0%,#fbfcfa 60%,#f4f8f5 100%);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+
+  /* Decorative background shapes matching the reference */
+  body:before, body:after{
+    content:"";
+    position:fixed;
+    pointer-events:none;
+    z-index:0;
+  }
+  body:before{
+    width:190px;height:190px;left:-90px;top:105px;border:28px solid rgba(23,107,92,.07);
+    border-radius:50%;
+    box-shadow:0 0 0 30px rgba(23,107,92,.035), 0 0 0 65px rgba(23,107,92,.018);
+  }
+  body:after{
+    width:130px;height:130px;right:-75px;bottom:210px;
+    border:1px solid rgba(23,107,92,.18);border-radius:50%;
+    box-shadow:0 0 0 18px rgba(23,107,92,.025);
+  }
+
+  .page{position:relative;z-index:1;min-height:100vh}
+  .wrap{width:min(430px,100%);margin:0 auto;padding:0 14px 24px}
+
+  .nav{
+    height:70px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
+    border-bottom:1px solid #edf1ef;display:flex;align-items:center;justify-content:space-between;
+    padding:0 14px;position:relative;z-index:3;
+    box-shadow:0 2px 12px rgba(18,63,59,.04);
+  }
+  .nav-group{display:flex;align-items:center;gap:18px}
+  .nav-link{
+    color:#183f3c;text-decoration:none;font-size:14px;font-weight:700;
+    display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  }
+  .nav-link.active{position:relative}
+  .nav-link.active:after{
+    content:"";position:absolute;left:0;right:0;bottom:-23px;height:3px;border-radius:3px;background:var(--primary2);
+  }
+  .nav-icon{
+    width:22px;height:22px;display:inline-grid;place-items:center;color:var(--primary);
+  }
+
+  .hero{
+    text-align:center;padding:38px 0 18px;position:relative;
+  }
+.hero h1{
+    margin:4px 0 0;font-size:68px;line-height:.95;letter-spacing:-2px;
+    font-weight:900;color:#075b50;
+  }
+  .hero h1:after{
+    content:"";display:block;width:160px;height:8px;margin:8px auto 0;
+    border-radius:50% 50% 55% 55%;
+    background:var(--primary2);transform:rotate(-2deg);
+  }
+  .hero h2{margin:28px 0 10px;font-size:24px;line-height:1.45;font-weight:900;color:#123f3b}
+  .hero p{margin:0 auto;color:#60736f;font-size:16px;line-height:1.8;max-width:620px}
+
+  .decor-cap,.decor-citadel{
+    position:absolute;pointer-events:none;opacity:.11;color:#73918b;
+  }
+  .decor-cap{left:-5px;top:130px;width:190px}
+  .decor-citadel{right:-20px;top:145px;width:210px;opacity:.13}
+
+  .quiz-card{
+    width:min(650px,100%);margin:12px auto 0;background:rgba(255,255,255,.97);
+    border:1px solid #e4ebe8;border-radius:24px;box-shadow:var(--shadow);padding:25px 26px 27px;
+  }
+  .intro-screen{padding:8px 2px 4px;text-align:center}
+  .intro-icon{width:86px;height:86px;margin:2px auto 16px;border-radius:27px;display:grid;place-items:center;background:linear-gradient(145deg,#f3fbf8,#e6f5ef);border:1px solid #cfe8df;box-shadow:0 12px 24px rgba(23,107,92,.12), inset 0 1px 0 rgba(255,255,255,.9);position:relative;overflow:hidden}
+  .intro-icon:before{content:"";position:absolute;width:58px;height:16px;border-radius:50%;background:rgba(23,107,92,.10);bottom:5px;filter:blur(5px)}
+  .compass-sticker svg{width:72px;height:72px;position:relative;z-index:1;filter:drop-shadow(0 5px 7px rgba(23,107,92,.16))}
+  .ai-credit{grid-column:1/-1;margin-top:2px;padding-top:2px;color:#78908b;font-size:11px;opacity:.72;letter-spacing:.1px}
+  @media(max-width:520px){.intro-icon{width:80px;height:80px;border-radius:24px}.compass-sticker svg{width:67px;height:67px}.ai-credit{font-size:10px}}
+  .intro-screen h3{margin:0 0 10px;color:var(--primary);font-size:24px;font-weight:900}
+  .intro-screen p{margin:0 auto;color:#5f746f;font-size:15px;line-height:1.9;max-width:520px}
+  .intro-list{display:grid;gap:8px;margin:18px auto 20px;max-width:520px;text-align:right}
+  .intro-item{display:flex;gap:9px;align-items:flex-start;background:#f7faf9;border:1px solid #e2ebe8;border-radius:13px;padding:11px 12px;color:#31514c;font-size:14px;line-height:1.65}
+  .intro-item b{color:#258e6e}
+  .start-btn{width:100%;max-width:360px;margin:0 auto}
+  .section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+  .section-title h3{margin:0;color:var(--primary);font-size:23px;font-weight:900;display:flex;align-items:center;gap:8px}
+  .qCounter{color:#647a75;font-size:14px;font-weight:700}
+  .progress{height:10px;border-radius:999px;background:#e5ece9;overflow:hidden;margin-bottom:27px}
+  .bar{height:100%;width:0;background:linear-gradient(90deg,#2fa878,#248d6e);transition:width .3s ease;border-radius:999px}
+  .q{display:none}.q.active{display:block}
+  .q h4{margin:0 0 17px;font-size:20px;line-height:1.6;font-weight:900;color:#123f3b}
+  .options{display:grid;grid-template-columns:1fr;gap:10px}
+  .opt{
+    min-height:56px;border:1px solid #d5e1de;background:#fff;border-radius:13px;
+    padding:15px 17px;cursor:pointer;transition:.18s ease;user-select:none;
+    font-size:15px;font-weight:700;line-height:1.45;color:#244744;
+    display:flex;align-items:center;
+  }
+  .opt:before{
+    content:"";width:21px;height:21px;border:2px solid #9db2ad;border-radius:50%;
+    margin-left:12px;flex:0 0 auto;
+  }
+  .opt:hover{border-color:#89bfae;box-shadow:0 5px 14px rgba(18,61,58,.06);transform:translateY(-1px)}
+  .opt.selected{border-color:#38a17d;background:#f0faf6;box-shadow:inset 0 0 0 1px rgba(45,155,120,.08)}
+  .opt.selected:before{border-color:#258e6e;box-shadow:inset 0 0 0 5px #fff;background:#2c9a77}
+  .opt small{display:block;color:var(--muted);margin-top:5px;line-height:1.5;font-weight:400;font-size:12.5px}
+  .actions{display:flex;gap:10px;margin-top:16px;align-items:center}
+  .btn{
+    appearance:none;border:0;cursor:pointer;padding:14px 16px;border-radius:14px;
+    font-weight:900;font-size:16px;color:#fff;background:#edf1ef;border:1px solid #d7e1de;
+    transition:transform .08s ease,background .18s ease;flex:1 1 auto;font-family:inherit;
+  }
+  .btn:hover{transform:translateY(-1px)}
+  .btn.primary{background:linear-gradient(135deg,#2d9b78,#176b5c);border-color:transparent;color:#fff;box-shadow:0 8px 18px rgba(23,107,92,.18)}
+  .btn:not(.primary){color:var(--primary);background:#f5f8f7}
+  .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+  .result{display:none;padding:2px 0 0}.result.active{display:block}
+  .resultBox{border:1px solid #d7e4e0;background:#fbfdfc;border-radius:17px;padding:16px}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;border:1px solid #bfe0d5;background:#edf8f4;color:var(--primary);font-weight:800}
+  .type{color:var(--muted)}
+  .major{border:1px solid #d7e4e0;background:#fff;border-radius:12px;padding:10px 12px;margin-top:8px}
+  .major-name{font-weight:800}.major-meta{font-size:11px;color:#6b817c;margin-top:4px}.majors{display:grid;grid-template-columns:1fr 1fr;gap:8px}.major{margin-top:0;min-height:52px;display:flex;align-items:center;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}.major{font-family:inherit;text-align:right;width:100%;color:inherit}.major:hover{transform:translateY(-2px);border-color:#9bcdbd;box-shadow:0 7px 18px rgba(23,107,92,.08)}.major:active{transform:scale(.985)}@media(max-width:360px){.majors{grid-template-columns:1fr}.scores{grid-template-columns:1fr}}
+  .major-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:flex-end;justify-content:center;background:rgba(15,39,36,.45);backdrop-filter:blur(4px);padding:12px}.major-modal.active{display:flex!important}.major-modal-card{width:min(560px,100%);max-height:88vh;overflow:auto;background:#fff;border:1px solid #d7e4e0;border-radius:22px;padding:18px;box-shadow:0 20px 50px rgba(15,39,36,.2);animation:modalUp .2s ease}@keyframes modalUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}.major-modal-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.major-modal-title{font-size:20px;font-weight:900;color:#173e39;line-height:1.4}.major-close{position:relative;z-index:1002;width:36px;height:36px;border:1px solid #d7e4e0;background:#f5f9f7;border-radius:50%;font-size:22px;color:#52706b;cursor:pointer;flex:none}.major-modal-sub{font-size:12px;color:#6b817c;margin-top:4px}.major-info{margin-top:15px}.major-info h5{margin:0 0 7px;color:#176b5c;font-size:13px}.major-info p{margin:0;color:#405955;font-size:13px;line-height:1.85}.major-jobs{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}.major-job{padding:7px 10px;border-radius:999px;background:#f3faf7;border:1px solid #cce5dc;color:#28665a;font-size:11.5px;font-weight:800}.major-duration{display:inline-flex;margin-top:8px;padding:8px 11px;border-radius:10px;background:#f6f9f8;border:1px solid #dce8e4;color:#405955;font-size:12px;font-weight:800}.major-modal-note{margin-top:13px;padding:9px 11px;border-radius:11px;background:#fffaf0;border:1px solid #eee1bd;color:#76633b;font-size:11px;line-height:1.7}
+  .advice{line-height:1.8;color:#405955}
+  .scores-title{margin-top:18px;margin-bottom:8px;font-size:13px;font-weight:900;color:#176b5c}
+  .scores-help{margin:0 0 10px;color:#6b817c;font-size:11.5px;line-height:1.7}
+  .scores{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:stretch}
+  .score-row{border:1px solid #d7e4e0;background:#fff;border-radius:12px;padding:9px 10px;min-width:0;min-height:64px;height:64px;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box}
+  .score-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11.5px;font-weight:800;min-width:0}
+  .score-name{color:#244744;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .score-pct{color:#176b5c;font-weight:900}
+  .score-track{height:6px;flex:0 0 6px;background:#edf3f1;border-radius:999px;overflow:hidden;margin-top:7px}
+  .score-fill{height:100%;width:0;background:linear-gradient(90deg,#2f9e7b,#176b5c);border-radius:999px;transition:width .5s ease}
+  .result-note{margin-top:12px;padding:10px 12px;border-radius:12px;background:#f4faf7;border:1px solid #d8ebe4;color:#55716c;font-size:11.5px;line-height:1.7}
+  @media (max-width:560px){
+    .site-footer{grid-template-columns:1fr;gap:8px}
+    .footer-block + .footer-block{border-right:0;border-top:1px solid #dce6e2;padding-top:10px}
+  }
+
+  .links{display:flex;gap:10px}
+  .footerNote{margin-top:12px;color:var(--muted);font-size:12px;text-align:center}
+
+  .opt:focus-visible,.btn:focus-visible,.major:focus-visible,.major-close:focus-visible{outline:3px solid rgba(47,158,123,.35);outline-offset:2px}
+  .resultBox:focus{outline:none}
+  @media(max-width:700px){
+    #navActions{position:sticky;bottom:0;z-index:20;margin:12px -2px 0;padding:8px 2px calc(8px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-top:1px solid #e3ece8;box-shadow:0 -8px 20px rgba(18,63,59,.08)}
+  }
+  .hidden{display:none!important}
+
+  .site-footer{
+    margin-top:42px;padding:24px 0 12px;border-top:1px solid #eef2ef;
+    display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;gap:16px;text-align:center;
+    color:#667b77;
+  }
+  .footer-block{min-height:82px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px}
+  .footer-block + .footer-block{border-right:1px solid #dce6e2}
+  .footer-title{font-weight:800;color:#244744;font-size:14px}
+  .counter{
+    display:inline-flex;align-items:center;gap:7px;background:#176b5c;color:#fff;
+    padding:9px 18px;border-radius:13px;font-size:18px;font-weight:900;box-shadow:0 8px 18px rgba(23,107,92,.15);
+  }
+  .slogan{font-weight:900;color:#16805f;line-height:1.6;text-align:center}
+  .slogan:after{content:"";display:block;width:68px;height:4px;border-radius:50%;background:#2d9b78;margin:8px auto 0;transform:rotate(-3deg)}
+  .copyright{grid-column:1/-1;padding-top:7px;font-size:12px;color:#73847f}
+
+  @media (max-width:700px){
+    .nav{padding:0 16px}
+    .nav-group{gap:14px}
+    .nav-link{font-size:12px}
+    .nav-link .nav-label{display:none}
+    .hero{padding-top:28px}
+    .hero h1{font-size:56px}
+    .decor-cap{left:-55px;width:150px;top:150px}
+    .decor-citadel{right:-75px;width:190px;top:170px}
+  }
+  @media (max-width:520px){
+    .wrap{padding:0 12px 22px}
+    .nav{height:60px}
+    .nav-link.active:after{bottom:-18px}
+    .hero h1{font-size:50px}
+    .hero h2{font-size:20px;margin-top:23px}
+    .hero p{font-size:14px}
+    .quiz-card{padding:19px 16px 21px;border-radius:20px}
+    .section-title h3{font-size:20px}
+    .q h4{font-size:17px}
+    .opt{font-size:14px;min-height:54px}
+    .site-footer{grid-template-columns:1fr;gap:8px}
+    .footer-block + .footer-block{border-right:0;border-top:1px solid #dce6e2;padding-top:15px}
+  }
+
+
+/* Mobile-first layout */
+html,body{width:100%;overflow-x:hidden}
+body{padding:0;margin:0;background:#fbfcfa}
+.page{width:100%;max-width:430px;margin:0 auto;overflow:hidden}
+.nav{height:58px;padding:0 12px;gap:8px}
+.nav-group{gap:12px}
+.nav-link{font-size:11px;gap:4px}
+.nav-link .nav-label{display:inline}
+.nav-icon{width:18px;height:18px}
+.hero{padding:22px 16px 12px}
+.hero h1{font-size:52px;letter-spacing:-1px}
+.hero h1:after{width:125px;height:6px;margin-top:6px}
+.hero h2{font-size:18px;margin:20px 0 7px}
+.hero p{font-size:13px;line-height:1.75}
+.decor-cap{left:-75px;top:120px;width:135px}
+.decor-citadel{right:-95px;top:155px;width:180px}
+.quiz-card{width:calc(100% - 24px);margin:10px auto 0;padding:17px 14px 18px;border-radius:19px}
+.section-title{margin-bottom:10px}
+.section-title h3{font-size:19px}
+.qCounter{font-size:12px}
+.progress{height:8px;margin-bottom:21px}
+.q h4{font-size:16px;line-height:1.6;margin-bottom:13px}
+.options{gap:8px}
+.opt{min-height:52px;padding:12px 12px;font-size:13px;border-radius:12px}
+.opt:before{width:18px;height:18px;margin-left:9px}
+.actions{gap:8px;margin-top:12px}
+.btn{padding:12px 10px;font-size:15px;border-radius:12px}
+.site-footer{margin-top:28px;padding:20px 12px 12px;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.footer-block{min-height:70px;gap:7px}
+.footer-title{font-size:11px}
+.counter{font-size:15px;padding:8px 10px;border-radius:11px}
+.slogan{font-size:11px}
+.copyright{font-size:10px}
+@media(max-width:360px){.nav-link .nav-label{display:none}.hero h1{font-size:46px}.hero h2{font-size:17px}.opt{font-size:12px}.site-footer{grid-template-columns:1fr;gap:4px}.footer-block + .footer-block{border-right:0;border-top:1px solid #dce6e2;padding-top:10px}}
+
+  .brand{display:flex;align-items:center;text-decoration:none;min-width:0}
+  .brand-logo{width:122px;height:50px;object-fit:contain;display:block}
+  .brand-only{display:flex;align-items:center;justify-content:center}
+  .about-card{width:min(650px,100%);margin:24px auto 0;background:linear-gradient(135deg,#effaf6,#f8fcfa);border:1px solid #d7ebe4;border-radius:24px;padding:20px 18px;box-shadow:0 12px 30px rgba(18,63,59,.06)}
+  .about-card h3{margin:0 0 8px;color:var(--primary);font-size:21px;font-weight:900}
+  .about-card p{margin:0;color:#49645f;line-height:1.85;font-size:14px}
+  .logo-footer{width:105px;height:42px;object-fit:contain;display:block}
+  @media(max-width:520px){.brand-logo{width:100px;height:43px}.about-card{margin-top:18px;padding:17px 15px}.about-card h3{font-size:19px}.about-card p{font-size:13px}}
+
+
+  /* تحسين وضوح شعار مساري */
+  .brand-logo{width:142px;height:62px;object-fit:contain;image-rendering:auto;filter:saturate(1.04) contrast(1.03)}
+  .logo-footer{width:118px;height:48px;object-fit:contain;image-rendering:auto}
+  @media(max-width:520px){.brand-logo{width:116px;height:50px}.logo-footer{width:112px;height:45px}}
+
+</style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav" aria-label="التنقل الرئيسي">
+      <a class="brand" href="#top" aria-label="مساري - الصفحة الرئيسية">
+        <img class="brand-logo" src="logo.webp" alt="شعار مساري">
+      </a>
+      <div class="nav-group">
+        <a class="nav-link active" href="#top">الرئيسية</a>
+        <a class="nav-link" href="#about">عن مساري</a>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <section class="hero" id="top">
+        <div class="decor-cap" aria-hidden="true">
+          <svg viewBox="0 0 220 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 52L112 18L203 31L107 66L18 52Z" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/>
+            <path d="M107 66L96 120C91 137 67 142 56 127L35 98" stroke="currentColor" stroke-width="7"/>
+            <path d="M35 98L25 119M35 98L48 119" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="35" cy="98" r="6" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="decor-citadel" aria-hidden="true">
+          <svg viewBox="0 0 240 190" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 170V102l28-20 19 11 22-32 26 14 22-29 28 19 26-15 28 21v99H16Z" opacity=".9"/>
+            <path d="M42 102h20v68H42zm35 0h19v68H77zm34-7h22v75h-22zm39 15h18v60h-18z" fill="#fbfcfa" opacity=".55"/>
+            <path d="M23 102l21-15 19 10 22-31 26 13 22-28 29 18 25-13 27 20" stroke="#fbfcfa" stroke-width="5" opacity=".6"/>
+          </svg>
+        </div>
+<h1>مساري</h1>
+        <h2>اكتشف ميولك، واختر مستقبلك</h2>
+        <p>اختبار بسيط يساعدك على التعرّف على التخصصات المناسبة لك،<br>وبناء مستقبلك الجامعي بثقة.</p>
+      </section>
+
+      <div class="quiz-card">
+      <div class="intro-screen" id="introScreen">
+        <div class="intro-icon compass-sticker" aria-hidden="true">
+          <svg viewBox="0 0 120 120" role="img" aria-label="بوصلة ترمز إلى اكتشاف المسار">
+            <defs>
+              <linearGradient id="compassBg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#2f9e7b"/>
+                <stop offset="100%" stop-color="#176b5c"/>
+              </linearGradient>
+              <linearGradient id="compassNeedle" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="100%" stop-color="#bcefe0"/>
+              </linearGradient>
+            </defs>
+            <circle cx="60" cy="60" r="54" fill="url(#compassBg)"/>
+            <circle cx="60" cy="60" r="45" fill="#f8fffc" opacity=".96"/>
+            <circle cx="60" cy="60" r="38" fill="none" stroke="#b9ded2" stroke-width="2"/>
+            <path d="M60 18v8M60 94v8M18 60h8M94 60h8" stroke="#176b5c" stroke-width="3" stroke-linecap="round"/>
+            <path d="M60 29l10 31-10 31-10-31z" fill="url(#compassNeedle)"/>
+            <path d="M60 29l10 31-10-9z" fill="#2f9e7b"/>
+            <path d="M60 91L50 60l10 9z" fill="#176b5c" opacity=".9"/>
+            <circle cx="60" cy="60" r="6" fill="#176b5c" stroke="#fff" stroke-width="3"/>
+            <path d="M60 8l2.7 6.2 6.3 2.8-6.3 2.8L60 26l-2.7-6.2-6.3-2.8 6.3-2.8z" fill="#f2c94c"/>
+          </svg>
+        </div>
+        <h3>قبل ما نبلّش</h3>
+        <p>هذا الاختبار <b>استرشادي</b>، ويهدف إلى مساعدتك على التعرّف إلى ميولك واهتماماتك بطريقة مبسّطة، وتقديم أفكار عن المجالات والتخصصات الأقرب إليك.</p>
+        <div class="intro-list">
+          <div class="intro-item"><b>✓</b><span>النتيجة ليست حكماً نهائياً، ولا تُغني عن البحث والاستشارة.</span></div>
+          <div class="intro-item"><b>✓</b><span>أجب وفق ميولك الحقيقية، وما تراه مناسباً لك.</span></div>
+          <div class="intro-item"><b>✓</b><span>تعتمد النتيجة على إجاباتك وميولك كما تظهر في الاختبار.</span></div>
+        </div>
+        <button class="btn primary start-btn" id="startBtn" type="button">ابدأ الاختبار</button>
+      </div>
+
+      <div id="quizContent" class="hidden">
+      <div class="section-title" id="titleBar">
+        <h3>اكتشف مسارك</h3>
+        <div class="qCounter" id="qCounter">السؤال 1</div>
+      </div>
+
+      <div class="progress" aria-hidden="true">
+        <div class="bar" id="bar"></div>
+      </div>
+
+      <div id="questions" aria-live="polite"></div>
+
+      <div class="result" id="resultBox" tabindex="-1">
+        <div class="resultBox">
+          <div class="pill">🎉 نتيجتك جاهزة</div>
+          <h4 id="topResult">—</h4>
+          <div class="type" id="typeLabel"></div>
+          <div class="majors" id="majorsList" aria-label="التخصصات المقترحة"></div>
+          <p class="advice" id="adviceText">—</p>
+
+          <div class="scores-title">نِسَب التوافق</div>
+          <p class="scores-help">النسبة تعبّر عن مدى توافق إجاباتك مع طبيعة المجال، وليست احتمال نجاحك فيه.</p>
+          <div class="scores" id="scoresList"></div>
+
+          <div class="result-note">
+            هذه النتيجة استرشادية لمساعدتك على اكتشاف اهتماماتك، وليست حكماً نهائياً بشأن التخصص المناسب لك. وقد تختلف ملاءمة التخصص حسب شروط القبول والخطة الدراسية في كل عام.
+          </div>
+
+          <div class="actions" style="margin-top:12px;">
+            <button class="btn" id="shareBtn" type="button">مشاركة النتيجة</button>
+            <button class="btn" id="restartBtn" type="button">ابدأ من جديد</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions" id="navActions">
+        <button class="btn" id="backBtn" type="button" disabled>رجوع</button>
+        <button class="btn primary" id="nextBtn" type="button">التالي</button>
+      </div>
+      </div>
+    </div>
+
+      <section class="about-card" aria-label="عن اختبار مساري">
+        <h3>ما هو اختبار مساري؟</h3>
+        <p>اختبار تفاعلي يساعدك على فهم ميولك واهتماماتك، ويمنحك مؤشرات أولية عن المجالات والتخصصات التي قد تكون أقرب إلى طريقة تفكيرك واهتماماتك.</p>
+      </section>
+
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-block">
+        <img class="logo-footer" src="logo.webp" alt="شعار مساري">
+        <div class="slogan">اكتشف ميولك، واختر مستقبلك</div>
+      </div>
+      <div class="footer-block">
+        <div class="counter" aria-label="إجمالي زيارات الموقع"><b id="visitCount">—</b></div>
+      </div>
+      <div class="ai-credit" aria-label="معلومة عن تطوير المنصة">تم تطوير هذه المنصة بمساعدة الذكاء الاصطناعي</div>
+      <div class="copyright">© مساري</div>
+    </footer>
+  </div>
+
+  <div class="major-modal" id="majorModal" role="dialog" aria-modal="true" aria-labelledby="majorModalTitle">
+    <div class="major-modal-card">
+      <div class="major-modal-top"><div><div class="major-modal-title" id="majorModalTitle">التخصص</div><div class="major-modal-sub" id="majorModalSub"></div></div><button class="major-close" id="majorModalClose" type="button" aria-label="إغلاق">×</button></div>
+      <div class="major-info"><h5>📚 عن الاختصاص</h5><p id="majorModalSummary"></p></div>
+      <div class="major-info"><h5>⏳ مدة الدراسة</h5><div class="major-duration" id="majorModalDuration"></div></div>
+      <div class="major-info"><h5>💼 مجالات العمل بعد التخرج</h5><div class="major-jobs" id="majorModalJobs"></div></div>
+      <div class="major-modal-note">المعلومات للتعريف بالاختصاص بشكل مبسّط، وقد تختلف الخطة الدراسية وبعض فرص العمل حسب الجامعة والبرنامج.</div>
+    </div>
+  </div>
+
+<script>
+  // بنك أسئلة متنوع؛ يتم اختيار مجموعة مناسبة عشوائياً عند بدء الاختبار.
+  const TRACKS = {
+    anal: {
+      title: "🧠 عقل مفكر",
+      type: "تميل إلى التحليل والبحث والاستنتاج",
+      tags: ["🧠 مفكر", "🔍 باحث", "📊 دقيق", "🧩 محلّل", "📚 متعمّق"],
+      majors: {
+        scientific: [
+          {name:"🔬 رياضيات", university:"جامعة حلب", kind:"كلية", branch:"scientific"},
+          {name:"💊 صيدلة", university:"جامعة دمشق", kind:"كلية", branch:"scientific"},
+          {name:"💻 هندسة البرمجيات", university:"جامعة دمشق", kind:"معهد", branch:"scientific"},
+          {name:"🧪 مخابر", university:"جامعة حلب", kind:"معهد", branch:"scientific"}
+        ],
+        literary: [
+          {name:"🧠 علم النفس", university:"جامعة حلب", kind:"كلية", branch:"literary"},
+          {name:"⚖️ حقوق", university:"جامعة دمشق", kind:"كلية", branch:"literary"},
+          {name:"📰 إعلام", university:"جامعة حلب", kind:"معهد", branch:"literary"},
+          {name:"💼 إدارة الأعمال", university:"جامعة دمشق", kind:"معهد", branch:"literary"}
+        ]
+      },
+      advice: "تميل إلى فهم الأمور من جذورها والوصول إلى النتائج بالاعتماد على الدليل والمنطق. لذلك أضفنا لك خيارات أكاديمية تجمع بين الدراسة الجامعية والتعليم التقاني."
+    },
+    design: {
+      title: "🛠️ صانع ومبتكر",
+      type: "تميل إلى التصميم والبناء وتحويل الأفكار إلى واقع",
+      tags: ["🛠️ صانع", "✨ مبتكر", "🎨 تصميم", "💻 تقني", "🚀 تنفيذ"],
+      majors: {
+        scientific: [
+          {name:"💻 هندسة البرمجيات ونظم المعلومات", university:"جامعة حلب", kind:"كلية", branch:"scientific"},
+          {name:"🏛️ هندسة معمارية", university:"جامعة دمشق", kind:"كلية", branch:"scientific"},
+          {name:"💻 هندسة الشبكات", university:"جامعة حلب", kind:"معهد", branch:"scientific"},
+          {name:"⚙️ تحكم وأتمتة", university:"جامعة دمشق", kind:"معهد", branch:"scientific"}
+        ],
+        literary: [
+          {name:"🎨 فنون جميلة", university:"جامعة دمشق", kind:"كلية", branch:"literary"},
+          {name:"🏛️ تاريخ", university:"جامعة حلب", kind:"كلية", branch:"literary"},
+          {name:"📰 إعلام", university:"جامعة حلب", kind:"معهد", branch:"literary"},
+          {name:"💼 علاقات عامة", university:"جامعة دمشق", kind:"معهد", branch:"literary"}
+        ]
+      },
+      advice: "تميل إلى تحويل الأفكار إلى نتائج ملموسة. لذلك تظهر في المقترحات مجالات التصميم والهندسة والحاسوب، إلى جانب مسارات تطبيقية يمكن أن تمنحك خبرة عملية."
+    },
+    comm: {
+      title: "📣 راوي ومؤثر",
+      type: "تميل إلى التواصل واللغة والتأثير",
+      tags: ["📣 مؤثر", "🗣️ تواصل", "📖 قصة", "🎤 تقديم", "👥 جمهور"],
+      majors: {
+        scientific: [
+          {name:"💻 هندسة البرمجيات ونظم المعلومات", university:"جامعة دمشق", kind:"كلية", branch:"scientific"},
+          {name:"📊 اقتصاد", university:"جامعة حلب", kind:"كلية", branch:"scientific"},
+          {name:"💻 هندسة البرمجيات", university:"جامعة دمشق", kind:"معهد", branch:"scientific"},
+          {name:"💼 إدارة الأعمال", university:"جامعة حلب", kind:"معهد", branch:"scientific"}
+        ],
+        literary: [
+          {name:"📺 الإعلام الإلكتروني", university:"جامعة دمشق", kind:"كلية", branch:"literary"},
+          {name:"📝 اللغة العربية وآدابها", university:"جامعة حلب", kind:"كلية", branch:"literary"},
+          {name:"📰 إعلام", university:"جامعة حلب", kind:"معهد", branch:"literary"},
+          {name:"💼 إدارة الأعمال", university:"جامعة دمشق", kind:"معهد", branch:"literary"}
+        ]
+      },
+      advice: "تتميّز في التعبير وفهم الآخرين ونقل الأفكار. لذلك ركّزنا على الإعلام واللغات والإدارة والاقتصاد، مع خيارات جامعية وتقانية من الجامعتين."
+    },
+    manage: {
+      title: "📋 منظّم وقائد",
+      type: "تميل إلى التنظيم والتخطيط واتخاذ القرار",
+      tags: ["📋 منظّم", "🎯 قائد", "📈 نتائج", "⏱️ تخطيط", "🗂️ إدارة"],
+      majors: {
+        scientific: [
+          {name:"📈 اقتصاد", university:"جامعة دمشق", kind:"كلية", branch:"scientific"},
+          {name:"🏗️ هندسة مدنية", university:"جامعة حلب", kind:"كلية", branch:"scientific"},
+          {name:"💼 إدارة الأعمال", university:"جامعة دمشق", kind:"معهد", branch:"scientific"},
+          {name:"💰 محاسبة", university:"جامعة حلب", kind:"معهد", branch:"scientific"}
+        ],
+        literary: [
+          {name:"📊 اقتصاد", university:"جامعة حلب", kind:"كلية", branch:"literary"},
+          {name:"⚖️ حقوق", university:"جامعة دمشق", kind:"كلية", branch:"literary"},
+          {name:"💼 إدارة الأعمال", university:"جامعة حلب", kind:"معهد", branch:"literary"},
+          {name:"💰 محاسبة", university:"جامعة دمشق", kind:"معهد", branch:"literary"}
+        ]
+      },
+      advice: "تميل إلى وجود هدف واضح وخطة ونتيجة قابلة للقياس. لذلك تظهر أمامك الإدارة والاقتصاد والحقوق والمجالات المالية بصيغ جامعية وتقانية."
+    },
+    social: {
+      title: "🤝 إنسان ومساند",
+      type: "تميل إلى مساعدة الناس وفهم احتياجاتهم",
+      tags: ["🤝 متعاون", "❤️ داعم", "👂 مستمع", "🌱 إنساني", "🫶 مبادر"],
+      majors: {
+        scientific: [
+          {name:"🏥 علم النفس السريري", university:"جامعة دمشق", kind:"كلية", branch:"scientific"},
+          {name:"🏥 تمريض", university:"جامعة حلب", kind:"كلية", branch:"scientific"},
+          {name:"🩺 معالجة فيزيائية", university:"جامعة دمشق", kind:"معهد", branch:"scientific"},
+          {name:"🩺 معالجة فيزيائية", university:"جامعة حلب", kind:"معهد", branch:"scientific"}
+        ],
+        literary: [
+          {name:"🧑‍🏫 إرشاد نفسي", university:"جامعة دمشق", kind:"كلية", branch:"literary"},
+          {name:"🧑‍🏫 المناهج وطرائق التدريس", university:"جامعة حلب", kind:"كلية", branch:"literary"},
+          {name:"🤝 علم الاجتماع", university:"جامعة دمشق", kind:"كلية", branch:"literary"},
+          {name:"📚 تاريخ", university:"جامعة حلب", kind:"كلية", branch:"literary"}
+        ]
+      },
+      advice: "تهتم بالناس وتقدّر المساعدة والدعم. لذلك أدرجنا لك مسارات صحية وتربوية، مع خيارات جامعية وتقانية من حلب ودمشق."
+    },
+    tech: {
+      title: "💡 تقني وحلّال مشاكل",
+      type: "تميل إلى التقنية والتجربة وحل المشكلات",
+      tags: ["💡 تقني", "💻 رقمي", "🧩 حلول", "⚙️ تجريبي", "🤖 مستكشف"],
+      majors: {
+        scientific: [
+          {name:"💻 هندسة البرمجيات ونظم المعلومات", university:"جامعة دمشق", kind:"كلية", branch:"scientific"},
+          {name:"💻 هندسة البرمجيات ونظم المعلومات", university:"جامعة حلب", kind:"كلية", branch:"scientific"},
+          {name:"💻 هندسة البرمجيات", university:"جامعة دمشق", kind:"معهد", branch:"scientific"},
+          {name:"💻 هندسة الشبكات", university:"جامعة حلب", kind:"معهد", branch:"scientific"}
+        ],
+        literary: [
+          {name:"📊 الإعلام الإلكتروني", university:"جامعة دمشق", kind:"كلية", branch:"literary"},
+          {name:"🎨 فنون جميلة", university:"جامعة دمشق", kind:"كلية", branch:"literary"},
+          {name:"💼 تسويق ومبيعات", university:"جامعة دمشق", kind:"معهد", branch:"literary"},
+          {name:"📰 إعلام", university:"جامعة حلب", kind:"معهد", branch:"literary"}
+        ]
+      },
+      advice: "تستمتع عندما تواجه مشكلة يمكنك تفكيكها وتجربة حلول متعددة لها. لذلك ركّزنا على المعلوماتية والحاسوب والمسارات التطبيقية القريبة من التقنية."
+    },
+    business: {
+      title: "💼 مبادر وريادي",
+      type: "تميل إلى المبادرة والفرص وبناء المشاريع",
+      tags: ["💼 ريادي", "🚀 مبادر", "💡 فرص", "🤝 تفاوض", "📈 نمو"],
+      majors: {
+        scientific: [
+          {name:"📊 اقتصاد", university:"جامعة دمشق", kind:"كلية", branch:"scientific"},
+          {name:"📊 اقتصاد", university:"جامعة حلب", kind:"كلية", branch:"scientific"},
+          {name:"💼 إدارة الأعمال", university:"جامعة دمشق", kind:"معهد", branch:"scientific"},
+          {name:"💼 إدارة الأعمال", university:"جامعة حلب", kind:"معهد", branch:"scientific"}
+        ],
+        literary: [
+          {name:"📊 اقتصاد", university:"جامعة حلب", kind:"كلية", branch:"literary"},
+          {name:"💼 اقتصاد", university:"جامعة دمشق", kind:"كلية", branch:"literary"},
+          {name:"💼 إدارة الأعمال", university:"جامعة حلب", kind:"معهد", branch:"literary"},
+          {name:"💰 محاسبة", university:"جامعة دمشق", kind:"معهد", branch:"literary"}
+        ]
+      },
+      advice: "تميل إلى المبادرة وتحويل الفرص إلى مشاريع ونتائج. لذلك ستجد أمامك الاقتصاد وإدارة الأعمال والعلوم المالية ضمن خيارات من الجامعتين والمعاهد التقانية."
+    },
+    creative: {
+      title: "🎨 مبدع وخيالي",
+      type: "تميل إلى الفن والخيال وصناعة الأفكار الجديدة",
+      tags: ["🎨 فنان", "✨ خيالي", "🎬 بصري", "🎵 إبداع", "🖋️ تعبير"],
+      majors: {
+        scientific: [
+          {name:"🏛️ هندسة معمارية", university:"جامعة دمشق", kind:"كلية", branch:"scientific"},
+          {name:"🏗️ هندسة مدنية", university:"جامعة حلب", kind:"كلية", branch:"scientific"},
+          {name:"💻 هندسة الشبكات", university:"جامعة حلب", kind:"معهد", branch:"scientific"},
+          {name:"⚙️ تحكم وأتمتة", university:"جامعة دمشق", kind:"معهد", branch:"scientific"}
+        ],
+        literary: [
+          {name:"🎨 فنون جميلة", university:"جامعة دمشق", kind:"كلية", branch:"literary"},
+          {name:"🎨 فلسفة", university:"جامعة حلب", kind:"كلية", branch:"literary"},
+          {name:"📰 إعلام", university:"جامعة حلب", kind:"معهد", branch:"literary"},
+          {name:"📺 إعلام", university:"جامعة دمشق", kind:"معهد", branch:"literary"}
+        ]
+      },
+      advice: "تميل إلى التعبير والخيال وصناعة الأفكار المختلفة. لذلك أضفنا الفنون والعمارة والإعلام، إلى جانب خيارات تطبيقية من الجامعتين."
+    }
+  };
+
+  // بنك أسئلة متنوع؛ يتم اختيار مجموعة مناسبة عند بدء الاختبار.
+  const QUESTION_BANK = [
+    ["عندما تواجه مشكلة معقدة، ما أول ما تميل إلى فعله؟", [["anal","أحلّل الأسباب وأرتّب المعلومات"],["tech","أجرّب أكثر من حل عملي"],["manage","أضع خطة وخطوات واضحة"],["social","أسأل الأشخاص المتأثرين بالمشكلة"]]],
+    ["أي نوع من المهام يمكن أن تنسى الوقت أثناء القيام به؟", [["design","أبني أو أصمّم شيئاً جديداً"],["creative","أرسم أو أكتب أو أبتكر فكرة"],["tech","أبرمج أو أتعامل مع التقنية"],["comm","أشرح فكرة وأناقشها"]]],
+    ["إذا طُلب منك تنفيذ مشروع من الصفر، فأي دور تختار؟", [["business","أبحث عن الفرصة وكيفية تحويلها إلى مشروع"],["manage","أنظّم الفريق والموارد"],["design","أحوّل الفكرة إلى منتج أو تصميم"],["comm","أقدّم الفكرة وأتواصل مع الناس"]]],
+    ["أي إنجاز تشعر أنه الأقرب إلى شخصيتك؟", [["anal","اكتشاف سبب أو نتيجة لم تكن واضحة"],["creative","إنتاج عمل مميز وفريد"],["social","مساعدة شخص وتحسين تجربته"],["business","إطلاق فكرة وتحقيق نمو فيها"]]],
+    ["عندما تتعلم موضوعاً جديداً، ما الطريقة التي تفضّلها؟", [["anal","أقرأ التفاصيل وأقارن بين المصادر"],["tech","أجرّب بنفسي وأتعلّم من الخطأ"],["comm","أناقشه مع شخص وأشرحه بصوت عالٍ"],["creative","أحوّل الفكرة إلى رسم أو مثال بصري"]]],
+    ["في أي بيئة عمل تتخيّل نفسك مرتاحاً؟", [["social","مكان فيه تواصل ومساعدة للناس"],["tech","بيئة تقنية فيها تجارب وحلول"],["manage","فريق لديه أهداف ومواعيد واضحة"],["creative","مساحة فيها حرية وإبداع"]]],
+    ["إذا اختلف شخصان ضمن فريق، ما الدور الذي تميل إلى القيام به؟", [["comm","أستمع إلى الطرفين وأوضح وجهات النظر"],["social","أحاول فهم احتياج كل شخص"],["manage","أحدّد المشكلة وأقترح قراراً عملياً"],["business","أبحث عن حل يرضي الأطراف ويخدم الهدف"]]],
+    ["ما الشيء الذي يحمّسك أكثر في مشروع جديد؟", [["business","فكرة يمكن أن تتحول إلى فرصة حقيقية"],["design","كيفية صناعة المنتج أو الشكل النهائي"],["creative","الفكرة المختلفة وغير التقليدية"],["tech","التحدي التقني وكيفية حلّه"]]],
+    ["إذا طُلب منك تحسين تطبيق أو موقع، من أين تبدأ؟", [["tech","أفحص المشكلة وأجرّب حلولاً تقنية"],["design","أفكّر في تجربة المستخدم والشكل"],["anal","أحلّل البيانات والملاحظات"],["creative","أقترح طريقة جديدة وجذابة للتجربة"]]],
+    ["أي نوع من القرارات تتخذه بثقة أكبر؟", [["manage","قرارات فيها ترتيب ومسؤولية"],["business","قرارات فيها فرصة ومخاطرة محسوبة"],["anal","قرارات مبنية على معلومات وأدلة"],["social","قرارات تراعي تأثيرها في الناس"]]],
+    ["إذا كان لديك وقت فراغ، فأي نشاط أقرب إليك؟", [["creative","الرسم أو الكتابة أو صناعة المحتوى"],["tech","تجربة برنامج أو أداة جديدة"],["social","الحديث مع شخص أو مساعدته"],["comm","مشاهدة محتوى ومناقشة أفكاره"]]],
+    ["ما الشيء الذي يلجأ إليك الناس غالباً بسببه؟", [["anal","تحليل المشكلة وفهم التفاصيل"],["manage","ترتيب الأمور ووضع خطة"],["comm","شرح الفكرة أو إقناع الآخرين"],["social","الاستماع وتقديم الدعم"]]],
+    ["أي نتيجة تعتبرها نجاحاً حقيقياً؟", [["design","شيء ملموس صنعته بيدي أو بفكرتي"],["business","مشروع نما وحقق نتيجة"],["social","شخص استفاد فعلاً من مساعدتي"],["anal","حل صحيح أثبتته الأدلة"]]],
+    ["إذا طُلب منك تقديم فكرة أمام مجموعة، ما الجزء الذي تستمتع به؟", [["comm","الحديث والإقناع"],["creative","إعداد العرض بشكل مميز"],["business","إظهار قيمة الفكرة وفرصها"],["manage","تنظيم العرض والوقت والنقاط"]]],
+    ["أي نوع من التحديات يجذبك أكثر؟", [["tech","لغز تقني يحتاج إلى التجريب"],["anal","مسألة تحتاج إلى استنتاج دقيق"],["creative","مهمة مفتوحة بلا إجابة واحدة"],["business","تحدٍّ فيه فرصة ونتيجة قابلة للنمو"]]],
+    ["عندما تلاحظ خطأً متكرراً، ما أول رد فعل لديك؟", [["anal","أبحث عن السبب الجذري"],["tech","أجرّب تعديلات حتى أصل إلى الحل"],["manage","أضع طريقة تمنع تكراره"],["design","أعيد تصميم الخطوة المسببة للمشكلة"]]],
+    ["أي مادة أو مجال يمكن أن يثير فضولك؟", [["anal","العلوم والبحث"],["tech","البرمجة والتقنية"],["creative","الفن والتصميم"],["social","علم النفس والمجتمع"]]],
+    ["إذا أسست مشروعاً، ما أول شيء تفكّر فيه؟", [["business","من المستفيد وما الفرصة؟"],["manage","كيف أنظّم الفريق والعمليات؟"],["comm","كيف أوصل الفكرة إلى الجمهور؟"],["design","كيف سيكون المنتج وتجربة المستخدم؟"]]],
+    ["ما أكثر شيء يزعجك في العمل؟", [["manage","الفوضى وعدم وجود خطة"],["anal","اتخاذ قرارات بلا معلومات كافية"],["creative","عدم وجود مساحة للأفكار"],["social","تجاهل احتياجات الناس"]]],
+    ["إذا كانت لديك فكرة جديدة، كيف تفضّل تطويرها؟", [["creative","أرسمها وأجرّب أشكالاً مختلفة"],["tech","أبني نموذجاً أولياً"],["business","أختبر مدى حاجة الناس إليها"],["comm","أتحدث عنها وأجمع آراء الناس"]]],
+    ["أي مهارة تفضّل تطويرها أكثر؟", [["anal","البحث والاستنتاج"],["tech","البرمجة وحل المشكلات"],["comm","الخطابة والتواصل"],["social","الاستماع وفهم الآخرين"]]],
+    ["إذا أصبح لديك فريق، ما الشيء الذي تفعله تلقائياً؟", [["manage","أوزّع المهام وأتابع التقدم"],["business","أحدّد الهدف والفرصة"],["comm","أحافظ على التواصل بين الأعضاء"],["social","أنتبه إلى احتياجات كل شخص"]]],
+    ["أي نوع من المحتوى يجذبك أكثر؟", [["creative","فيديوهات وصور ذات فكرة بصرية"],["comm","حوارات وقصص وتجارب"],["anal","شرح علمي وتحليلات"],["tech","تقنية وتجارب وأدوات"]]],
+    ["إذا فشلت محاولتك الأولى، ماذا تفعل؟", [["tech","أعدّل الحل وأعيد التجربة"],["anal","أحلّل سبب الفشل"],["business","أغيّر الخطة وأبحث عن فرصة ثانية"],["creative","أجرّب فكرة مختلفة تماماً"]]],
+    ["ما الأثر الذي تحب أن يتركه عملك بعد سنة؟", [["social","أشخاص استفادوا وتحسّنت حياتهم"],["business","مشروع أو مبادرة نمت"],["design","منتج أو عمل واضح ومميز"],["anal","معرفة أو حل ساعد الآخرين"]]],
+    ["إذا كان لديك معرض أو فعالية، فأي جزء يحمّسك أكثر؟", [["manage","تنظيم التفاصيل والبرنامج"],["comm","التقديم والتواصل مع الحضور"],["creative","الهوية البصرية والديكور"],["business","الترويج والشراكات"]]],
+    ["أي وصف أقرب إلى طريقة تفكيرك؟", [["anal","أسأل: لماذا؟ وما الدليل؟"],["creative","أسأل: ماذا لو جرّبنا شيئاً مختلفاً؟"],["business","أسأل: أين الفرصة؟"],["social","أسأل: كيف سيتأثر الناس؟"]]],
+    ["إذا أُعطيت بيانات كثيرة، ماذا يمكن أن تفعل؟", [["anal","أبحث عن الأنماط والاستنتاجات"],["tech","أستخدم أداة أو برنامجاً لتحليلها"],["manage","أحوّلها إلى مؤشرات وخطة متابعة"],["business","أبحث عن فرصة أو قرار مفيد منها"]]],
+    ["أي نوع من العلاقات المهنية تفضّل بناءه؟", [["comm","شبكة واسعة من الناس والتواصل معهم"],["business","شراكات وفرص تعاون"],["social","علاقات قائمة على الثقة والدعم"],["manage","فريق متعاون ومنظّم"]]],
+    ["إذا كان عليك اختيار مشروع جانبي، ماذا تختار؟", [["tech","تطبيق أو أداة رقمية"],["creative","قناة محتوى أو مشروع فني"],["business","متجر أو مشروع صغير"],["social","مبادرة تفيد فئة من الناس"]]],
+    ["ما الذي يجعلك تقول: هذا العمل يشبهني؟", [["design","عندما أرى فكرة تحولت إلى شيء ملموس"],["comm","عندما أستطيع إيصال فكرة إلى الناس"],["anal","عندما أصل إلى نتيجة منطقية"],["manage","عندما يسير العمل بشكل منظّم"]]],
+    ["إذا طُلب منك حل مشكلة في الجامعة أو المدرسة، ماذا تفضّل؟", [["social","أفهم المشكلة من وجهة نظر الطلاب"],["manage","أرتّب الخطوات والمسؤوليات"],["tech","أبني حلاً رقمياً إن أمكن"],["business","أبحث عن طريقة قابلة للتوسع والاستمرار"]]],
+    ["أي عبارة أقرب إليك؟", [["creative","أحب أن يكون لي أسلوبي الخاص"],["anal","أحب أن أفهم قبل أن أحكم"],["comm","أحب أن أتحدث وأستمع وأناقش"],["business","أحب أن أبدأ بدلاً من الانتظار"]]],
+    ["عندما تعمل ضمن فريق، ماذا تحتاج أكثر؟", [["manage","أدوار ومواعيد واضحة"],["social","جو داعم ومحترم"],["creative","حرية في تقديم الأفكار"],["tech","أدوات ومشكلة حقيقية لأحلّها"]]]
+  ];
+
+  const QUESTION_COUNT = 12;
+  const LS_KEY = "masari_demo_v2";
+  let answers = [];
+  let idx = 0;
+  let activeQuestions = [];
+
+  const questionsEl = document.getElementById("questions");
+  const bar = document.getElementById("bar");
+  const qCounter = document.getElementById("qCounter");
+  const nextBtn = document.getElementById("nextBtn");
+  const backBtn = document.getElementById("backBtn");
+  const resultBox = document.getElementById("resultBox");
+  const topResult = document.getElementById("topResult");
+  const typeLabel = document.getElementById("typeLabel");
+  const majorsList = document.getElementById("majorsList");
+  const adviceText = document.getElementById("adviceText");
+  const restartBtn = document.getElementById("restartBtn");
+  const shareBtn = document.getElementById("shareBtn");
+  const navActions = document.getElementById("navActions");
+  const titleBar = document.getElementById("titleBar");
+  const introScreen = document.getElementById("introScreen");
+  const quizContent = document.getElementById("quizContent");
+  const startBtn = document.getElementById("startBtn");
+
+  function shuffle(arr){
+    const a = [...arr];
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function buildQuiz(){
+    // نضمن تنوّعاً جيداً في الأسئلة ثم نكمل العدد المطلوب.
+
+    const candidates = shuffle(QUESTION_BANK);
+    const selected = [];
+    const covered = new Set();
+
+    for(const q of candidates){
+      const tracks = q[1].map(x => x[0]);
+      if(tracks.some(t => !covered.has(t))){
+        selected.push(q);
+        tracks.forEach(t => covered.add(t));
+      }
+      if(selected.length >= QUESTION_COUNT) break;
+    }
+
+    for(const q of candidates){
+      if(selected.length >= QUESTION_COUNT) break;
+      if(!selected.includes(q)) selected.push(q);
+    }
+
+    activeQuestions = shuffle(selected.slice(0, QUESTION_COUNT)).map(q => ({
+      text: q[0],
+      options: shuffle(q[1])
+    }));
+
+    answers = Array(QUESTION_COUNT).fill("");
+    idx = 0;
+    questionsEl.innerHTML = activeQuestions.map((q,i) => `
+      <div class="q ${i===0?'active':''}" data-q="${i}">
+        <h4>${q.text}</h4>
+        <div class="options">
+          ${q.options.map(o => `<button class="opt" type="button" data-val="${o[0]}" aria-pressed="false">${o[1]}</button>`).join('')}
+        </div>
+      </div>
+    `).join('');
+
+    questionsEl.querySelectorAll('.opt').forEach(opt => {
+      opt.addEventListener('click', () => selectOption(opt.getAttribute('data-val')));
+    });
+    updateUI();
+  }
+
+  async function hitCounter(){
+    const el = document.getElementById("visitCount");
+    if(!el) return;
+
+    // عداد عالمي مشترك لزيارات الصفحة؛ الرقم محفوظ خارج المتصفح ويظهر لجميع الزوار.
+    try {
+      const r = await fetch(
+        "https://counterapi.com/api/masari-demo-2026/view/total-visits",
+        {cache:"no-store"}
+      );
+      if(r.ok){
+        const d = await r.json();
+        if(d && typeof d.value === "number"){
+          el.textContent = d.value.toLocaleString("ar-EG");
+          return;
+        }
+      }
+    } catch(e){}
+
+    // إذا تعذر الوصول للخدمة، لا نعرض رقماً محلياً مضللاً.
+    el.textContent = "—";
+  }
+
+  function persist(){
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ answers, savedAt: Date.now() })); } catch(e){}
+  }
+
+  function updateUI(){
+    const qEls = [...questionsEl.querySelectorAll('.q')];
+    qEls.forEach((el, i) => el.classList.toggle('active', i === idx));
+    bar.style.width = ((idx / QUESTION_COUNT) * 100) + "%";
+    qCounter.textContent = "السؤال " + (idx + 1);
+    backBtn.disabled = idx === 0;
+    nextBtn.textContent = idx === QUESTION_COUNT - 1 ? "اعرض نتيجتي" : "التالي";
+    const currentQ = qEls[idx];
+    if(!currentQ) return;
+    const selectedVal = answers[idx];
+    currentQ.querySelectorAll('.opt').forEach(opt => {
+      const selected = opt.getAttribute('data-val') === selectedVal;
+      opt.classList.toggle('selected', selected);
+      opt.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    });
+  }
+
+  function selectOption(val){
+    answers[idx] = val;
+    persist();
+    updateUI();
+  }
+
+  function computeResult(){
+    const keys = Object.keys(TRACKS);
+    const scores = Object.fromEntries(keys.map(k => [k,0]));
+    const opportunities = Object.fromEntries(keys.map(k => [k,0]));
+
+    activeQuestions.forEach(q => {
+      q.options.forEach(o => {
+        if(opportunities[o[0]] !== undefined) opportunities[o[0]]++;
+      });
+    });
+
+    answers.forEach(a => {
+      if(scores[a] !== undefined) scores[a]++;
+    });
+
+    // نطبع النتيجة حسب نسبة الاختيارات من الفرص المتاحة لكل ميل،
+    // حتى لا يحصل ميل على أفضلية فقط لأنه ظهر في أسئلة أكثر.
+    const percentages = Object.fromEntries(keys.map(k => [
+      k,
+      opportunities[k] ? Math.round(18 + ((scores[k] / opportunities[k]) * 100) * 0.55) : 18
+    ]));
+
+    const ranking = shuffle(keys).sort((a,b) => percentages[b] - percentages[a]);
+    return { best: ranking[0], percentages, ranking };
+  }
+
+  const MAJOR_DETAILS = {
+    "رياضيات": ["يدرس الرياضيات النظرية والتطبيقية والمنطق وأساليب حل المشكلات وتحليل البيانات.","4 سنوات تقريباً",["التدريس","تحليل البيانات","البرمجة","البحث العلمي","القطاع المصرفي"]],
+    "صيدلة": ["يهتم بدراسة الأدوية وتركيبها وتأثيراتها واستخدامها الآمن، مع أساسيات العلوم الطبية والصيدلانية.","5 سنوات تقريباً",["الصيدليات","شركات الأدوية","المعامل الدوائية","المستشفيات","البحث الدوائي"]],
+    "هندسة البرمجيات": ["يركز على تحليل وتصميم وتطوير واختبار البرمجيات والأنظمة الرقمية.","تختلف حسب البرنامج؛ غالباً 4–5 سنوات",["مطور برمجيات","مطور تطبيقات","مطور مواقع","اختبار البرمجيات","محلل نظم"]],
+    "مخابر": ["مجال تقاني يرتبط بالتحاليل المخبرية وإجراءات أخذ العينات وفحصها وتوثيق النتائج.","تختلف حسب المعهد والبرنامج",["مخابر التحاليل","المشافي","المراكز الصحية","المختبرات الخاصة"]],
+    "علم النفس": ["يدرس السلوك والعمليات النفسية وطرق فهمها وتقييمها، مع أساليب الإرشاد والدعم.","4 سنوات تقريباً",["الإرشاد والدعم النفسي","المؤسسات التعليمية","المراكز الاجتماعية","البحث والدراسات"]],
+    "حقوق": ["يدرس القواعد القانونية وفروع القانون والعلاقات والحقوق والواجبات وتحليل النصوص القانونية.","4 سنوات تقريباً",["المحاماة بعد استيفاء المتطلبات","الشؤون القانونية","الإدارات والمؤسسات","البحث القانوني"]],
+    "إعلام": ["يتناول صناعة المحتوى الإعلامي وجمع المعلومات والتحرير والتقديم والإنتاج الإعلامي.","4 سنوات تقريباً للكلية؛ أقل في بعض المعاهد",["الصحافة","إعداد المحتوى","الإذاعة والتلفزيون","الإعلام الرقمي","العلاقات العامة"]],
+    "إدارة الأعمال": ["يركز على الإدارة والتسويق والموارد البشرية والعمليات واتخاذ القرار داخل المؤسسات والمشروعات.","تختلف حسب البرنامج؛ غالباً 4 سنوات للكلية وأقل في المعاهد",["إدارة الأعمال","التسويق","المبيعات","الموارد البشرية","إدارة المشاريع"]],
+    "هندسة البرمجيات ونظم المعلومات": ["يجمع بين تطوير البرمجيات وتحليل وتصميم نظم المعلومات وإدارة البيانات والأنظمة.","5 سنوات تقريباً",["مهندس برمجيات","محلل نظم","مطور تطبيقات","قواعد البيانات","إدارة نظم المعلومات"]],
+    "هندسة معمارية": ["تهتم بتصميم المباني والفراغات والعمران وتحويل المتطلبات إلى مخططات قابلة للتنفيذ.","5 سنوات تقريباً",["التصميم المعماري","المكاتب الهندسية","الإشراف على المشاريع","التصميم الداخلي","التخطيط العمراني"]],
+    "هندسة الشبكات": ["تختص ببناء وإدارة شبكات الحاسوب والاتصالات والخوادم وحماية البنية التحتية الرقمية.","تختلف حسب المعهد والبرنامج",["إدارة الشبكات","دعم الأنظمة","الشبكات والاتصالات","مراكز البيانات","أمن الشبكات"]],
+    "تحكم وأتمتة": ["يركز على أنظمة التحكم والأتمتة والحساسات والمتحكمات المستخدمة لتشغيل الآلات والعمليات.","تختلف حسب المعهد والبرنامج",["التحكم الصناعي","الأتمتة","الصيانة والتحكم","أنظمة التشغيل الصناعية"]],
+    "فنون جميلة": ["مجال إبداعي يطوّر المهارات الفنية في الرسم والتصوير والتصميم والفنون البصرية.","4–5 سنوات تقريباً حسب الاختصاص والبرنامج",["الفنون البصرية","التصميم","الرسم والتوضيح","العمل الحر","التدريس الفني وفق المؤهلات"]],
+    "تاريخ": ["يدرس تطور المجتمعات والأحداث والحضارات وتحليل المصادر التاريخية والسياقات الثقافية والاجتماعية.","4 سنوات تقريباً",["التعليم وفق المؤهلات","المتاحف والتراث","البحث العلمي","الأرشفة والتوثيق","المحتوى الثقافي"]],
+    "علاقات عامة": ["يركز على إدارة الاتصال بين المؤسسات وجمهورها وتنظيم الحملات والفعاليات والتواصل المؤسسي.","تختلف حسب البرنامج",["العلاقات العامة","تنظيم الفعاليات","الاتصال المؤسسي","إدارة المحتوى","التسويق"]],
+    "اقتصاد": ["يدرس الأسواق والموارد والقرارات الاقتصادية مع أدوات للتحليل المالي والاقتصادي.","4 سنوات تقريباً",["التحليل الاقتصادي","المصارف","الشركات","المؤسسات الحكومية","البحث والدراسات"]],
+    "هندسة مدنية": ["تهتم بتصميم وتنفيذ وإدارة مشاريع البناء والبنية التحتية كالطرق والمنشآت وشبكات المياه والصرف.","5 سنوات تقريباً",["المكاتب الهندسية","الإشراف على المشاريع","التنفيذ والإنشاء","إدارة المشاريع","البنية التحتية"]],
+    "محاسبة": ["تختص بتسجيل وتحليل العمليات المالية وإعداد التقارير ومتابعة الحسابات والرقابة المالية.","تختلف حسب البرنامج؛ غالباً 4 سنوات للكلية وأقل في المعاهد",["المحاسبة","التدقيق","الحسابات المالية","الشؤون المالية","المصارف والشركات"]],
+    "علم النفس السريري": ["يركز على فهم وتقييم المشكلات والاضطرابات النفسية وأساليب التدخل ضمن الإطار المهني المعتمد.","تختلف حسب البرنامج والمرحلة الدراسية",["الدعم والتقييم النفسي ضمن الاختصاص","المراكز الصحية والاجتماعية","المؤسسات التعليمية","البحث النفسي"]],
+    "تمريض": ["يدرس الرعاية التمريضية للمريض وتقييم حالته وتنفيذ خطط الرعاية والتعاون مع الفريق الصحي.","4 سنوات تقريباً للبرنامج الجامعي",["المستشفيات","المراكز الصحية","العيادات","الرعاية الصحية"]],
+    "معالجة فيزيائية": ["يهتم بتقييم الحركة والوظائف الجسدية والمساعدة في إعادة التأهيل باستخدام تمارين وتقنيات علاجية.","تختلف حسب البرنامج",["مراكز العلاج الفيزيائي","المستشفيات","مراكز التأهيل","العيادات"]],
+    "إرشاد نفسي": ["يركز على مساعدة الأفراد في التعامل مع التحديات الشخصية والدراسية والاجتماعية بأساليب الإرشاد المناسبة.","تختلف حسب البرنامج",["الإرشاد التربوي","المدارس والمؤسسات التعليمية","المراكز الاجتماعية","الدعم والإرشاد"]],
+    "المناهج وطرائق التدريس": ["يهتم بتصميم المناهج التعليمية وتطويرها ودراسة طرائق التدريس وتقويم التعلم.","4 سنوات تقريباً",["التدريس وفق المؤهلات","تطوير المناهج","التدريب التربوي","المؤسسات التعليمية"]],
+    "علم الاجتماع": ["يدرس المجتمع والعلاقات والمؤسسات والظواهر الاجتماعية وأدوات البحث الاجتماعي.","4 سنوات تقريباً",["البحث الاجتماعي","المؤسسات الاجتماعية","المشاريع المجتمعية","الدراسات والاستبيانات","القطاع الأهلي"]],
+    "تسويق ومبيعات": ["يركز على فهم السوق والعملاء وتسويق المنتجات والخدمات وإدارة المبيعات.","تختلف حسب المعهد والبرنامج",["التسويق","المبيعات","خدمة العملاء","التسويق الرقمي","تطوير الأعمال"]],
+    "الإعلام الإلكتروني": ["يركز على إنتاج المحتوى للمنصات الرقمية وإدارة النشر الإلكتروني والوسائط المتعددة.","4 سنوات تقريباً",["الإعلام الرقمي","إدارة المحتوى","التحرير الإلكتروني","إدارة المنصات","صناعة المحتوى"]],
+    "اللغة العربية وآدابها": ["يدرس اللغة العربية وعلومها وآدابها، من النحو والصرف والبلاغة إلى الأدب وتحليل النصوص.","4 سنوات تقريباً",["التدريس وفق المؤهلات","التحرير اللغوي","الكتابة والمحتوى","البحث الأدبي","الصحافة والمحتوى"]],
+    "فلسفة": ["تبحث في قضايا المعرفة والمنطق والأخلاق والفكر وتدرب على التحليل النقدي وبناء الحجج.","4 سنوات تقريباً",["التعليم وفق المؤهلات","البحث والدراسات","الكتابة والتحرير","المحتوى الثقافي"]]
+  };
+  function cleanMajorName(name){return String(name||'').replace(/[\p{Extended_Pictographic}\uFE0F]/gu,'').replace(/\s+/g,' ').trim();}
+  let currentMajorItems = [];
+  let majorModalBound = false;
+
+  // توحيد أسماء الاختصاصات ومنع تكرار الاختصاص نفسه حتى لو اختلفت الجامعة أو ظهرت الرموز.
+  function majorKey(name){
+    return cleanMajorName(name)
+      .replace(/[–—-]/g,' ')
+      .replace(/\s+/g,' ')
+      .trim()
+      .toLocaleLowerCase('ar');
+  }
+
+  function uniquePool(pool){
+    const seen = new Set();
+    return (pool || []).filter(item => {
+      const key = majorKey(item.name);
+      if(!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
+  // تصنيف داخلي فقط لتحقيق التنوع بين المجالات؛ لا يظهر للمستخدم.
+  function fieldOf(item){
+    const n = cleanMajorName(item.name);
+    if(/برمجيات|شبكات|تحكم|هندسة/.test(n)) return 'تقني-هندسي';
+    if(/إعلام|علاقات عامة|لغة عربية|فلسفة|تاريخ|إعلام إلكتروني/.test(n)) return 'إعلام-إنساني';
+    if(/اقتصاد|إدارة الأعمال|محاسبة|تسويق/.test(n)) return 'إداري-اقتصادي';
+    if(/نفس|تمريض|معالجة|مخابر/.test(n)) return 'صحي-إنساني';
+    if(/فنون/.test(n)) return 'فني-إبداعي';
+    if(/رياضيات/.test(n)) return 'علمي';
+    if(/حقوق/.test(n)) return 'قانوني';
+    if(/مناهج/.test(n)) return 'تربوي';
+    return 'متنوع';
+  }
+  function bindMajorDetails(items){
+    currentMajorItems = items || [];
+    const modal=document.getElementById('majorModal');
+    const title=document.getElementById('majorModalTitle');
+    const sub=document.getElementById('majorModalSub');
+    const summary=document.getElementById('majorModalSummary');
+    const duration=document.getElementById('majorModalDuration');
+    const jobs=document.getElementById('majorModalJobs');
+    const close=()=>{ modal.classList.remove('active'); modal.style.display='none'; document.body.style.overflow=''; };
+    if(majorModalBound) return;
+    majorModalBound=true;
+    majorsList.addEventListener('click',(e)=>{
+      const btn=e.target.closest('[data-major-index]');
+      if(!btn || !majorsList.contains(btn)) return;
+      const item=currentMajorItems[Number(btn.dataset.majorIndex)];
+      if(!item) return;
+      const key=cleanMajorName(item.name);
+      const d=MAJOR_DETAILS[key]||['هذا الاختصاص يقدّم دراسة متخصصة في المجال المرتبط به، ويجمع بين المعرفة النظرية والتطبيق العملي بحسب البرنامج.','تختلف حسب الجامعة والبرنامج',['مؤسسات وشركات مرتبطة بالمجال','العمل الحر','البحث أو التدريب وفق المؤهلات']];
+      title.textContent=key;
+      sub.textContent='معلومات تعريفية عن الاختصاص';
+      summary.textContent=d[0];
+      duration.textContent=d[1];
+      jobs.innerHTML=d[2].map(j=>`<span class="major-job">${j}</span>`).join('');
+      modal.classList.add('active');
+      modal.style.display='flex';
+      document.body.style.overflow='hidden';
+    });
+    document.getElementById('majorModalClose').addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();close();});
+    modal.addEventListener('click',(e)=>{if(e.target===modal) close();});
+    document.addEventListener('keydown',(e)=>{if(e.key==='Escape' && modal.classList.contains('active')) close();});
+  }
+
+  function showResult(){
+    if(answers.some(a => !a)){
+      alert("يرجى اختيار إجابة عن جميع الأسئلة قبل عرض النتيجة.");
+      return;
+    }
+
+    const result = computeResult();
+    const best = result.best;
+    const t = TRACKS[best];
+
+    topResult.textContent = t.title;
+    typeLabel.textContent = t.type;
+    // أربع توصيات ثابتة: اثنتان علمية واثنتان أدبية، مع منع تكرار الاختصاص
+    // وتوزيع المجالات قدر الإمكان بين تقني/هندسي/إداري/إنساني/صحي/تربوي.
+    const chosenNames = new Set();
+    const pickBranch = (pool, count) => {
+      const items = shuffle(uniquePool(pool)).filter(item => !chosenNames.has(majorKey(item.name)));
+      const chosen = [];
+      const usedFields = new Set();
+      const usedKinds = new Set();
+      const usedUniversities = new Set();
+      while(chosen.length < count && items.length){
+        let best = null, bestScore = -Infinity;
+        for(const item of items){
+          if(chosen.includes(item) || chosenNames.has(majorKey(item.name))) continue;
+          const field = fieldOf(item);
+          let score = Math.random() * 0.15;
+          if(!usedFields.has(field)) score += 6;
+          if(!usedKinds.has(item.kind)) score += 2;
+          if(!usedUniversities.has(item.university)) score += 2;
+          const sameFieldCount = chosen.filter(x => fieldOf(x) === field).length;
+          if(sameFieldCount > 0) score -= 3;
+          if(best === null || score > bestScore){ best = item; bestScore = score; }
+        }
+        if(!best) break;
+        chosen.push(best);
+        chosenNames.add(majorKey(best.name));
+        usedFields.add(fieldOf(best));
+        usedKinds.add(best.kind);
+        usedUniversities.add(best.university);
+        items.splice(items.indexOf(best), 1);
+      }
+      return chosen;
+    };
+
+    // نختار العلمي أولاً، ثم الأدبي مع استبعاد أي اسم تم اختياره سابقاً.
+    // لا نستخدم fallback عشوائي حتى لا نفقد شرط 2 علمي + 2 أدبي.
+    const scientific = pickBranch(t.majors?.scientific, 2);
+    const literary = pickBranch(t.majors?.literary, 2);
+    let suggestedMajors = [...scientific, ...literary];
+
+    // ضمان 4 بطاقات عند توفر بيانات كافية، مع الحفاظ على 2+2.
+    if(scientific.length < 2 || literary.length < 2){
+      const allScientific = shuffle(uniquePool(t.majors?.scientific)).filter(x => !suggestedMajors.some(y => majorKey(y.name) === majorKey(x.name)));
+      const allLiterary = shuffle(uniquePool(t.majors?.literary)).filter(x => !suggestedMajors.some(y => majorKey(y.name) === majorKey(x.name)));
+      while(scientific.length < 2 && allScientific.length) scientific.push(allScientific.shift());
+      while(literary.length < 2 && allLiterary.length) literary.push(allLiterary.shift());
+      suggestedMajors = [...scientific.slice(0,2), ...literary.slice(0,2)];
+    }
+
+    suggestedMajors = suggestedMajors.slice(0, 4);
+    majorsList.innerHTML = suggestedMajors.map((m, i) => `
+      <button class="major" type="button" data-major-index="${i}"><div><div class="major-name">${m.name}</div><div class="major-meta">اضغط لمعرفة التفاصيل</div></div></button>
+    `).join("");
+    bindMajorDetails(suggestedMajors);
+    adviceText.textContent = t.advice;
+
+    const scoresEl = document.getElementById("scoresList");
+    if(scoresEl){
+      scoresEl.innerHTML = result.ranking.map(k => {
+        const pct = result.percentages[k];
+        return `
+          <div class="score-row">
+            <div class="score-head">
+              <span class="score-name">${TRACKS[k].title}</span>
+              <span class="score-pct">${pct}%</span>
+            </div>
+            <div class="score-track" aria-hidden="true">
+              <div class="score-fill" style="width:${pct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    bar.style.width = "100%";
+    resultBox.classList.add("active");
+    resultBox.focus({preventScroll:true});
+    questionsEl.classList.add("hidden");
+    navActions.classList.add("hidden");
+    titleBar.classList.add("hidden");
+    persist();
+  }
+
+  nextBtn.addEventListener("click", () => {
+    if(idx < QUESTION_COUNT - 1){
+      if(!answers[idx]){ alert("اختر إجابة أولاً."); return; }
+      idx++;
+      updateUI();
+    } else {
+      showResult();
+    }
+  });
+
+  backBtn.addEventListener("click", () => {
+    if(idx > 0){ idx--; updateUI(); }
+  });
+
+  async function shareResult(){
+    const majors = [...majorsList.querySelectorAll('.major-name')].map(el => el.textContent.trim()).join('، ');
+    const text = `نتيجتي في مساري: ${topResult.textContent.trim()}\n${typeLabel.textContent.trim()}\nالتخصصات المقترحة: ${majors}`;
+    try {
+      if(navigator.share){
+        await navigator.share({title:'نتيجتي في مساري', text});
+        return;
+      }
+      if(navigator.clipboard && window.isSecureContext){
+        await navigator.clipboard.writeText(text);
+        alert('تم نسخ النتيجة، يمكنك مشاركتها الآن.');
+        return;
+      }
+    } catch(e){
+      if(e && e.name === 'AbortError') return;
+    }
+    alert(text);
+  }
+
+  if(shareBtn) shareBtn.addEventListener('click', shareResult);
+
+  function startQuiz(){
+    const modal=document.getElementById("majorModal");
+    if(modal){ modal.classList.remove("active"); modal.style.display="none"; document.body.style.overflow=""; }
+    introScreen.classList.add("hidden");
+    quizContent.classList.remove("hidden");
+    resultBox.classList.remove("active");
+    questionsEl.classList.remove("hidden");
+    navActions.classList.remove("hidden");
+    titleBar.classList.remove("hidden");
+    buildQuiz();
+    window.scrollTo({top: 0, behavior: "smooth"});
+  }
+
+  startBtn.addEventListener("click", startQuiz);
+
+  restartBtn.addEventListener("click", () => {
+    startQuiz();
+  });
+
+  // يبدأ بناء الأسئلة عند الضغط على زر «ابدأ الاختبار» لتجنب إعادة البناء مرتين.
+  hitCounter();
+</script>
+
+>
+</body>
+</html>
