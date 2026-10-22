@@ -1,0 +1,6 @@
+{
+  "name": "masari",
+  "private": true,
+  "type": "module",
+  "description": "Static site. This file only lets Node run tools/simulate.mjs."
+}
